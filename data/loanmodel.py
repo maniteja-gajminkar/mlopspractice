@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import pickle  # ✅ Move this to the top
 
 # Load env vars
-load_dotenv(dotenv_path="data/.env.dev")
+load_dotenv(dotenv_path="/loandemo/data/.env.dev")
 
 # Get path from environment OR use fallback
 data_path = os.getenv("DATA_PATH")
