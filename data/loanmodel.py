@@ -13,7 +13,7 @@ load_dotenv(dotenv_path="data/.env.dev")
 # Get path from environment OR use fallback
 data_path = os.getenv("DATA_PATH")
 if not data_path:
-    data_path = "data/loan_dev_data.csv"  # fallback
+    data_path = "./loandemo/data/loan_dev_data.csv"
 
 print("Current Directory:", os.getcwd())
 print("Data Path from .env.dev:", data_path)
