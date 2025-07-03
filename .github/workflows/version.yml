@@ -1,5 +1,8 @@
 name: Bump Version
 
+permisisons:
+    contents: write
+
 on:
   pull_request:
     types: [closed]
