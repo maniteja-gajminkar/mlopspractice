@@ -1,6 +1,6 @@
 name: Bump Version
 
-permisisons:
+permissions:
     contents: write
 
 on:
