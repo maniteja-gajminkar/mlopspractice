@@ -49,9 +49,7 @@ print("R² Score:", r2_score(y_test, y_pred))
 print("MSE:", mean_squared_error(y_test, y_pred))
 
 # Save model
-os.makedirs("data/model", exist_ok=True)
 model_path = "data/model/loan-moodel.pkl"
-
 with open(model_path, "wb") as f:
     pickle.dump(model, f)
 
@@ -59,3 +57,5 @@ with open(model_path, "wb") as f:
 with open(model_path, "rb") as f:
     loaded_model = pickle.load(f)
 print("Loaded model prediction:", loaded_model.predict(X_test[:1]))
+
+print(f"\n✅ Model saved to {model_path}")
