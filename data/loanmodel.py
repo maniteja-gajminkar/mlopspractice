@@ -57,5 +57,6 @@ with open(model_path, "wb") as f:
 with open(model_path, "rb") as f:
     loaded_model = pickle.load(f)
 print("Loaded model prediction:", loaded_model.predict(X_test[:1]))
+print("print the model")
 
 print(f"\n✅ Model is saved to {model_path}")
