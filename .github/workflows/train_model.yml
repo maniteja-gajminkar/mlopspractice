@@ -2,7 +2,9 @@ name: Train model
 
 on:
   push:
-    branches: [main]
+    # Trigger only when pushing tags (required for release step to work)
+    tags:
+      - 'v*'  # Example: v1.0, v2.0.1
 
 jobs:
   train:
@@ -30,7 +32,7 @@ jobs:
           name: loanmodel-pkl
           path: data/model/loan-moodel.pkl
 
-      - name: Create Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: data/model/loan-moodel.pkl
