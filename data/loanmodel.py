@@ -59,3 +59,4 @@ with open(model_path, "rb") as f:
 print("Loaded model prediction:", loaded_model.predict(X_test[:1]))
 
 print(f"\n✅ Model saved to {model_path}")
+print("model is done")
