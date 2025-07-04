@@ -19,7 +19,7 @@ jobs:
 
         - name: Install Dependencies
           run: |
-            pip install -r ml-loan-demo/requirements.txt
+            pip install -r loan-demo/data/requirements.txt
             mkdir ml-loan-demo/model
 
         - name: Train Model
