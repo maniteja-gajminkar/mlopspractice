@@ -43,9 +43,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v
-          release_name: ""
+          tag_name: ${{env.VERSION}
+          release_name: "Release ${{env.VERSION}}"
           body: "Automated release"
+
 
       - name: Upload Version File
         uses: actions/upload-release-asset@v1
@@ -53,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: version.txt
-          asset_name: version.txt
-          asset_content_type: text/plain
+          asset_path: loandemo/data/loanmodelnew.pkl
+          asset_name: loamodelnew.pkl
+          asset_content_type: application/octet-stream
