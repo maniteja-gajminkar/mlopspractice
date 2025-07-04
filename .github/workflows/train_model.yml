@@ -1,61 +1,58 @@
-name : Train model
+name: Train model
 
 on:
-    push: 
-        branches: [main]
+  push:
+    branches: [main]
 
-jobs: 
-    train: 
-        runs-on: ubuntu-latest
+jobs:
+  train:
+    runs-on: ubuntu-latest
 
-        steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v3
-  
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with: 
-                python-version: "3.12"
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-        - name: Install Dependencies
-          run: |
-            pip install -r data/requirements.txt
-            
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
 
-        - name: Train Model
-          run: python data/loanmodel.py
+      - name: Install Dependencies
+        run: |
+          pip install -r data/requirements.txt
 
-        - name: Generate tag
-          id: version
-          run: |
-            VERSION="v$(date +%Y%m%D%H%M%S)"
-            echo "VERSION=$VERSION" > $GITHUB_ENV
-            echo $VERSION > version.txt
+      - name: Train Model
+        run: python data/loanmodel.py
 
+      - name: Generate Tag
+        id: version
+        run: |
+          VERSION="v$(date +%Y%m%d%H%M%S)"   # Fixed format: no slashes
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "$VERSION" > version.txt
 
-        - name: Upload Model Artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: loan-model-pkl
-            path: data/model/loan-moodel.pkl
+      - name: Upload Model Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: loan-model-pkl
+          path: data/model/loan-moodel.pkl
 
-        - name: Create GitHub Release
-          id: create_release
-          uses: actions/create-release@v1
-          env: 
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          with:
-              tag_name: ${{env.VERSION}}
-              release_name: "Release ${{env.VERSION}}"
-              body: "Automated release"
-          
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v
+          release_name: ""
+          body: "Automated release"
 
-        - name: Upload version file
-          uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: loandemo/model/loan_model.pkl
-            asset_name: loan_model.pkl
-            asset_content_type: application/octet-stream
+      - name: Upload Version File
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: version.txt
+          asset_name: version.txt
+          asset_content_type: text/plain
