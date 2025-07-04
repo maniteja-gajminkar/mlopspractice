@@ -5,18 +5,12 @@ venv/
 .env*
 *.env
 
-# ✅ Allow specific env file
-!data/.env.dev
-
 # Ignore model files
 model/
 *.pkl
 
 # Ignore data files (optional)
 data/*.csv
-
-# ✅ Allow specific CSV file
-!data/loan_dev_data.csv
 
 # Ignore notebook checkpoints
 .ipynb_checkpoints/
