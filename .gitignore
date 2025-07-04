@@ -6,11 +6,8 @@ venv/
 *.env
 
 # Ignore model files
-model/
+data/model/
 *.pkl
-
-# Ignore data files (optional)
-data/*.csv
 
 # Ignore notebook checkpoints
 .ipynb_checkpoints/
@@ -19,3 +16,9 @@ data/*.csv
 .vscode/
 .DS_Store
 Thumbs.db
+
+# If you want to keep only specific CSVs, comment out the next line
+# data/*.csv
+
+# Allow tracked CSV files
+!data/loan_dev_data.csv
