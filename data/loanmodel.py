@@ -62,7 +62,7 @@ print("MSE:", mean_squared_error(y_test, y_pred))
 os.makedirs("data/model", exist_ok=True)
 
 # Save the model
-model_path = "data/model/loan-moodel.pkl"
+model_path = "data/model/loanmodel.pkl"
 with open(model_path, "wb") as f:
     pickle.dump(model, f)
 
