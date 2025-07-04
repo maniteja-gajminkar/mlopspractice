@@ -55,5 +55,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: loandemo/data/loanmodel.pkl
-          asset_name: loamodel.pkl
+          asset_name: loanmodel.pkl
           asset_content_type: application/octet-stream
